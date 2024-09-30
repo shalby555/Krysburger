@@ -1,0 +1,19 @@
+﻿@using Krysburger.Core.InputModels
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Forms
+@rendermode RenderMode.InteractiveServer
+
+<h1>"Вход"</h1>
+<div>
+    <p>
+        "Логин":<br />
+        <InputText @bind-Value="user.Login" />
+    </p>
+    <p>
+        "Пароль":<br />
+        <InputNumber @bind-Value="user.Password" />
+    </p>
+</div>
+@code {
+    UserInputModel user = new();
+}

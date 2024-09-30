@@ -9,12 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krysburger.Web", "Krysburge
 		{974C910C-E0D3-488D-A7CA-304F8BF3DD3B} = {974C910C-E0D3-488D-A7CA-304F8BF3DD3B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krysburger.BLL", "Krysburger.BLL\Krysburger.BLL.csproj", "{974C910C-E0D3-488D-A7CA-304F8BF3DD3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krysburger.BLL", "Krysburger.BLL\Krysburger.BLL.csproj", "{974C910C-E0D3-488D-A7CA-304F8BF3DD3B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6521733C-509D-4D19-90DC-B6C81715AEA3} = {6521733C-509D-4D19-90DC-B6C81715AEA3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krysburger.Core", "Krysburger.Core\Krysburger.Core.csproj", "{6521733C-509D-4D19-90DC-B6C81715AEA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krysburger.Core", "Krysburger.Core\Krysburger.Core.csproj", "{6521733C-509D-4D19-90DC-B6C81715AEA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
