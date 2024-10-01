@@ -3,7 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krysburger.Web", "Krysburger.Web\Krysburger.Web.csproj", "{697C15C8-6484-48AC-A0BE-63EFE430815B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krysburger.Web", "Krysburger.Web\Krysburger.Web.csproj", "{697C15C8-6484-48AC-A0BE-63EFE430815B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6521733C-509D-4D19-90DC-B6C81715AEA3} = {6521733C-509D-4D19-90DC-B6C81715AEA3}
+		{974C910C-E0D3-488D-A7CA-304F8BF3DD3B} = {974C910C-E0D3-488D-A7CA-304F8BF3DD3B}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krysburger.BLL", "Krysburger.BLL\Krysburger.BLL.csproj", "{974C910C-E0D3-488D-A7CA-304F8BF3DD3B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6521733C-509D-4D19-90DC-B6C81715AEA3} = {6521733C-509D-4D19-90DC-B6C81715AEA3}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krysburger.Core", "Krysburger.Core\Krysburger.Core.csproj", "{6521733C-509D-4D19-90DC-B6C81715AEA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +26,14 @@ Global
 		{697C15C8-6484-48AC-A0BE-63EFE430815B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{697C15C8-6484-48AC-A0BE-63EFE430815B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{697C15C8-6484-48AC-A0BE-63EFE430815B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{974C910C-E0D3-488D-A7CA-304F8BF3DD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{974C910C-E0D3-488D-A7CA-304F8BF3DD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{974C910C-E0D3-488D-A7CA-304F8BF3DD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{974C910C-E0D3-488D-A7CA-304F8BF3DD3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6521733C-509D-4D19-90DC-B6C81715AEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6521733C-509D-4D19-90DC-B6C81715AEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6521733C-509D-4D19-90DC-B6C81715AEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6521733C-509D-4D19-90DC-B6C81715AEA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
