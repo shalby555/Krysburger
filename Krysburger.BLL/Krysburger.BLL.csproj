@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Krysburger.Core\Krysburger.Core.csproj" />
+  </ItemGroup>
+
 </Project>
