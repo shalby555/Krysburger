@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Krysburger.Core\Krysburger.Core.csproj" />
-    <ProjectReference Include="..\Krysburger.DAL\Krysburger.DAL.csproj" />
   </ItemGroup>
 
 </Project>

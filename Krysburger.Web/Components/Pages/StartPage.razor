@@ -1,31 +1,21 @@
 ﻿@using Krysburger.Core.InputModels
+@using Krysburger.BLL.Smthng
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Forms
 @rendermode RenderMode.InteractiveServer
 
 @page "/start-page"
+@inject NavigationManager navManager
 
-<style>
-    body {
-        background: #f69a73;
-    }
-    .div-3 {
-        background-color: #FBD603;
-        justify-content: space-evenly;
-        bottom: 60px;
-    }
-    .decor {
-        position: relative;
-        max-width: 200px;
-        margin: 50px auto 0;
-        background: #FBD603;
-        border-radius: 30px;
-    }
-</style>
-
-<h1>Добро пожаловать!!!!</h1>
-<EditForm Model="@user" OnSubmit="Validate">
-    <form class="decor">
+<link rel="stylesheet" href="StartPage.css" />
+<div class="header1">
+    <h1>Добро пожаловать!!!!</h1>
+</div>
+<EditForm Model="@user" OnSubmit="Logiin">
+    <DataAnnotationsValidator />
+    <div class="header1">
+        <ValidationSummary />
+    </div>
         <div class="div-3">
             <h5>Логин</h5>
             <InputText @bind-Value="user.Login" />
@@ -35,21 +25,19 @@
             <InputText @bind-Value="user.Password" />
         </div>
         <div class="div-3">
-            <input type="submit" value="Вход" />
+            <button type="submit">
+                VHOD</button>
         </div>
-    </form>
 </EditForm>
-<div class="div-3">
-
-</div>
 
 @code {
     UserInputModel user = new();
 
-    string message = "";
+    UsersManager userManager = new();
 
-    private async Task Validate()
+    public void Logiin()
     {
-        
+        var url = userManager.UserLogin(user.Login, user.Password);
+        navManager.NavigateTo(url);
     }
 }

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\StartPage.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Krysburger.BLL\Krysburger.BLL.csproj" />
     <ProjectReference Include="..\Krysburger.Core\Krysburger.Core.csproj" />
   </ItemGroup>
