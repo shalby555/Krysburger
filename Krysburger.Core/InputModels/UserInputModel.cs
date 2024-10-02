@@ -9,6 +9,7 @@ namespace Krysburger.Core.InputModels
 {
     public class UserInputModel
     {
+
         [Required (ErrorMessage = "Пойман на ошибке!")]
 
         public string Login { get; set; }
