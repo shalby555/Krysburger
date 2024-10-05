@@ -11,5 +11,9 @@ namespace Krysburger.Core
         public static string AdminStartPage = "/start-page/admin";
 
         public static string WaiterStartPage = "/start-page/waiter";
+
+        public static string ChefStartPage = "/start-page/chef";
+
+        public static string LogistStartPage = "/start-page/logist";
     }
 }
