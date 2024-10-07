@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 
-namespace Krysburger.BLL.Smthng
+namespace Krysburger.BLL
 {
     public class UsersManager
     {

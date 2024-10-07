@@ -12,6 +12,8 @@ namespace Krysburger.Core.InputModels
 
         [Required (ErrorMessage = "Пойман на ошибке!")]
 
+        public int Id { get; set; } 
+
         public string Login { get; set; }
 
         public string Password { get; set; }
