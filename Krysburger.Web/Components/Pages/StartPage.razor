@@ -1,7 +1,10 @@
 ﻿@using Krysburger.Core.InputModels
-@using Krysburger.BLL.Smthng
+@using Krysburger.BLL
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Forms
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authentication.Cookies
 @rendermode RenderMode.InteractiveServer
 
 @page "/start-page"
@@ -11,18 +14,18 @@
 <div class="header1">
     <h1>Добро пожаловать!!!!</h1>
 </div>
-<EditForm Model="@user" OnSubmit="Logiin">
+<EditForm Model="@loginModel" OnSubmit="Login">
     <DataAnnotationsValidator />
     <div class="header1">
         <ValidationSummary />
     </div>
         <div class="div-3">
             <h5>Логин</h5>
-            <InputText @bind-Value="user.Login" />
+        <InputText @bind-Value="loginModel.Login" />
         </div>
         <div class="div-3">
             <h5>Пароль</h5>
-            <InputText @bind-Value="user.Password" />
+        <InputText type="password" @bind-Value="loginModel.Password" />
         </div>
         <div class="div-3">
             <button type="submit">
@@ -31,13 +34,29 @@
 </EditForm>
 
 @code {
-    UserInputModel user = new();
+    [SupplyParameterFromForm]
+    public UserInputModel loginModel { get; set; } = new();
+
+    [CascadingParameter]
+    public HttpContext httpContext { get; set; }
 
     UsersManager userManager = new();
 
-    public void Logiin()
+    public async Task Login()
     {
-        var url = userManager.UserLogin(user.Login, user.Password);
-        navManager.NavigateTo(url);
+        var claims = new List<Claim>()
+        {
+            new Claim("id", loginModel.Id.ToString()),
+            new Claim("login", loginModel.Login),
+            new Claim(ClaimTypes.Role, loginModel.Role.ToString())
+        };
+
+        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var pr = new ClaimsPrincipal(identity);
+        await httpContext.SignInAsync(pr);
+
+
+        var url = userManager.UserLogin(loginModel.Login, loginModel.Password);
+        navManager.NavigateTo(url, true);
     }
 }

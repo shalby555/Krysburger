@@ -1,4 +1,5 @@
 using Krysburger.Web.Components;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Krysburger.Web
 {
@@ -12,7 +13,20 @@ namespace Krysburger.Web
 			builder.Services.AddRazorComponents()
 				.AddInteractiveServerComponents();
 
-			var app = builder.Build();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(
+                    options =>
+                    {
+                        options.Cookie.Name = "auth_token";
+                        options.LoginPath = "/start-page";
+                        options.Cookie.MaxAge = TimeSpan.FromMinutes(30);
+                    });
+
+            builder.Services.AddAuthorization();
+            builder.Services.AddCascadingAuthenticationState();
+            builder.Services.AddHttpContextAccessor();
+
+            var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())
