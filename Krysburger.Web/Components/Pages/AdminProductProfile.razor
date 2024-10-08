@@ -1,0 +1,27 @@
+﻿@page "/admin-product"
+
+@if (_products.Count>0)
+{
+    <div style="display:flex; justify-content: flex-start; flex-wrap:wrap;">
+    @foreach(var p in _products)
+    {
+        <ProductProfileForm Product="@p"/>
+    }
+    </div>
+}
+else
+{
+    <p>Нет профиля продукта</p>
+}
+
+@code
+{
+    private AdminManageProductProfile _adminManageProductProfile;
+    private List<ProductProfileOutputModel> _products;
+
+    public AdminProductProfile()
+    {
+        _adminManageProductProfile = new AdminManageProductProfile();
+        _products = _adminManageProductProfile.GetAllProfileProducts();
+    }
+}
