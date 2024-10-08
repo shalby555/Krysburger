@@ -47,10 +47,16 @@
         var claims = new List<Claim>()
         {
             new Claim("id", loginModel.Id.ToString()),
-            new Claim("login", loginModel.Login.ToString()),
-            new Claim(ClaimTypes.Role, "Client")
+            new Claim("login", loginModel.Login),
+            new Claim(ClaimTypes.Role, loginModel.Role.ToString())
         };
-        var url = userManager.UserLogin(user.Login, user.Password);
+
+        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var pr = new ClaimsPrincipal(identity);
+        await httpContext.SignInAsync(pr);
+
+
+        var url = userManager.UserLogin(loginModel.Login, loginModel.Password);
         navManager.NavigateTo(url, true);
     }
 }

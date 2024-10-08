@@ -18,7 +18,7 @@ namespace Krysburger.Web
                     options =>
                     {
                         options.Cookie.Name = "auth_token";
-                        options.LoginPath = "/login";
+                        options.LoginPath = "/start-page";
                         options.Cookie.MaxAge = TimeSpan.FromMinutes(30);
                     });
 
