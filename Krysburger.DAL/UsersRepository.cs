@@ -27,7 +27,7 @@ namespace Krysburger.DAL
             //    return connection.QuerySingle<UserDTO>(query, args);
             //}
 
-            var user = new UserDTO{ Id = 1, Login = "ZHOPA", Password = "BOBRA", Name = "UROD", RoleId = 1 };
+            var user = new UserDTO{ Id = 1, Login = "ZHOPA", Password = "BOBRA", Name = "UROD", RoleId = 0 };
             return user;
         }
     }
