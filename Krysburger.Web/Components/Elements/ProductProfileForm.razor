@@ -1,0 +1,18 @@
+﻿<div style="background-color: PaleGoldenrod; width: 350px; margin:10px; padding:10px; border:5px double Gold">
+    <h3>@Product.Name</h3>
+    <p>@Product.Description</p>
+    <p>@Product.Category</p>
+    <p>@Product.Cost</p>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href=@($"products/{Product.Id}") Match="NavLinkMatch.All">
+            <button>Посмотреть информацию о продукте</button>
+        </NavLink>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public ProductProfileOutputModel Product { get; set; }
+}
