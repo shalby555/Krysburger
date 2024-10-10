@@ -1,39 +1,40 @@
-﻿using Krysburger.Core;
-using Krysburger.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
+﻿using Krysburger.DAL;
+using AutoMapper;
+using Krysburger.Core.OutputModels;
+using Krysburger.Core.DTOs;
+using Krysburger.BLL.Mappings;
 
 namespace Krysburger.BLL
 {
     public class UsersManager
     {
-        public UsersRepository UserRepository = new();
+        public UsersRepository UserRepository;
 
-        public string UserLogin(string login, string password)
+        private Mapper _mapper;
+
+        public UsersManager()
         {
-            var url = "/start-page";
+            UserRepository = new();
 
-            var user = UserRepository.GetUserByLogin(login);
+            var config = new MapperConfiguration(
+                cfg => {
+                    cfg.AddProfile(new UserMapperProfile());
+                });
+            _mapper = new(config);
+        }
 
-            if (user is not null && user.Password == password)
+        public UserOutputModel UserLogin(string login, string password)
+        {
+            var user = new UserOutputModel();
+
+            var userDTO = UserRepository.GetUserByLogin(login);
+
+            if (userDTO is not null && userDTO.Password == password)
             {
-                switch (user.RoleId)
-                {
-                    case 0:
-                        url = Urls.AdminStartPage;
-                        break;
-
-                    case 1:
-                        url = Urls.WaiterStartPage;
-                        break;
-                }
+                user = _mapper.Map<UserOutputModel>(userDTO);
             }
 
-            return url;
+            return user;
         }
     }
 }

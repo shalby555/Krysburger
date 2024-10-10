@@ -1,5 +1,6 @@
 ﻿@using Krysburger.Core.InputModels
 @using Krysburger.BLL
+@using Krysburger.Core
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Forms
 @using System.Security.Claims
@@ -41,21 +42,50 @@
 
     UsersManager userManager = new();
 
+    string url = "/start-page";
+
     public async Task Login()
     {
-        var claims = new List<Claim>()
+        var user = userManager.UserLogin(loginModel.Login, loginModel.Password);
+
+        if (user.Login is not null)
         {
-            new Claim("id", loginModel.Id.ToString()),
-            new Claim("login", loginModel.Login),
-            new Claim(ClaimTypes.Role, loginModel.Role.ToString())
-        };
+            var claims = new List<Claim>()
+            {
+                new Claim("id", user.Id.ToString()),
+                new Claim("login", user.Login),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
+            };
 
-        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        var pr = new ClaimsPrincipal(identity);
-        await httpContext.SignInAsync(pr);
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var pr = new ClaimsPrincipal(identity);
+            await httpContext.SignInAsync(pr);
 
+            ChangeUrlByRole(user);
+        }
 
-        var url = userManager.UserLogin(loginModel.Login, loginModel.Password);
         navManager.NavigateTo(url, true);
+    }
+
+    private void ChangeUrlByRole(UserOutputModel user)
+    {
+        switch(user.Role)
+        {
+            case "waiter":
+                url = Urls.WaiterStartPage;
+                break;
+
+            case "admin":
+                url = Urls.AdminStartPage;
+                break;
+
+            case "chef":
+                url = Urls.ChefStartPage;
+                break;
+
+            case "logist":
+                url = Urls.LogistStartPage;
+                break;
+        }
     }
 }
