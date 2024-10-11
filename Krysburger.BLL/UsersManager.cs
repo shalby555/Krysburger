@@ -3,6 +3,7 @@ using AutoMapper;
 using Krysburger.Core.OutputModels;
 using Krysburger.Core.DTOs;
 using Krysburger.BLL.Mappings;
+using Krysburger.Core.InputModels;
 
 namespace Krysburger.BLL
 {
@@ -23,18 +24,19 @@ namespace Krysburger.BLL
             _mapper = new(config);
         }
 
-        public UserOutputModel UserLogin(string login, string password)
+        public UserOutputModel? UserLogin(UserInputModel user)
         {
-            var user = new UserOutputModel();
+            var userToReturn = new UserOutputModel();
 
-            var userDTO = UserRepository.GetUserByLogin(login);
+            var userDTO = UserRepository.GetUserByLogin(user.Login);
 
-            if (userDTO is not null && userDTO.Password == password)
+            if (userDTO is not null && userDTO.Password == user.Password)
             {
-                user = _mapper.Map<UserOutputModel>(userDTO);
+                userToReturn = _mapper.Map<UserOutputModel>(userDTO);
+                return userToReturn;
             }
 
-            return user;
+            return null;
         }
     }
 }

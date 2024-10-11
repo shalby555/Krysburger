@@ -46,15 +46,15 @@
 
     public async Task Login()
     {
-        var user = userManager.UserLogin(loginModel.Login, loginModel.Password);
+        var user = userManager.UserLogin(loginModel);
 
-        if (user.Login is not null)
+        if (user is not null)
         {
             var claims = new List<Claim>()
             {
                 new Claim("id", user.Id.ToString()),
                 new Claim("login", user.Login),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
