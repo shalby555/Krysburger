@@ -64,32 +64,5 @@ namespace Krysburger.BLL
                 },
             };
         }
-        public ProductAllInfoOutputModel GetProductById(int id)
-        {
-            if (id % 2 == 0)
-            {
-                return new ProductAllInfoOutputModel()
-                {
-                    Id = id,
-                    Name = "Cheese",
-                    Description = "Base product",
-                    Category = "Dairy products",
-                    Cost = 350,
-                    SpecialConditions = "Keep refrigerated"
-                };
-            }
-            else
-            {
-                return new ProductAllInfoOutputModel()
-                {
-                    Id = id,
-                    Name = "Water",
-                    Description = "Base product",
-                    Category = "Drinks",
-                    Cost = 80,
-                    SpecialConditions = "No special conditions"
-                };
-            }
-        }
     }
 }
