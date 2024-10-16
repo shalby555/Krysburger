@@ -1,8 +1,11 @@
 ﻿@page "/leftoverfood"
-
+<head>
+    <title>Остатки</title>
+    <link rel="stylesheet" href="LeftoverFood.css"/>
+</head>
 @if (_leftoverFood.Count > 0)
 {
-<div style="display:flex; justify-content: flex-start; flex-wrap:wrap;">    
+<div class="flex">    
 @foreach (var l in _leftoverFood)
 {
      <ProductCard LeftoverFood="@l"/>   
@@ -11,7 +14,7 @@
 }
 else
 {
-     <h3>Остатков Нут</h3>
+     <h3>Остатков Нет</h3>
     <p>Ресторан Леквидирован)))</p>
 }
 

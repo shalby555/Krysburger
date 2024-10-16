@@ -1,8 +1,17 @@
-﻿
-
+﻿<head>
+    <title>Product</title>
+    <link rel="stylesheet" href="LeftoverFood.css" />
+</head>
+<div class="color">
 <h3>@LeftoverFood.Name</h3>
 <p> @LeftoverFood.Count</p>
 
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href=@($"product/{LeftoverFood.Id}") Match="NavLinkMatch.All">
+        <button>Изменить(редактировать)</button>
+    </NavLink>
+   </div>
+</div>
 @code {
     [Parameter]
     [EditorRequired]

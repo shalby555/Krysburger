@@ -1,4 +1,5 @@
 ﻿using Krysburger.Core.OutputModels;
+using System.Xml.Linq;
 namespace Krysburger.BLL
 {
     public class LeftoverFoodManager
@@ -28,6 +29,30 @@ namespace Krysburger.BLL
                     Count=200
                 },
             };
+        }
+        public LeftoverFoodOutputModel GetLeftoverFoodGetById(int id)
+        {
+            if (id % 2 == 0)
+            {
+                return new LeftoverFoodOutputModel()
+                {
+                    Id = 2,
+                    Name = "Meat",
+                    Count = 300
+                };
+             }
+            else
+            {
+                return new LeftoverFoodOutputModel()
+                {
+                    Id = 3,
+                    Name = "Chicken",
+                    Count = 200
+                };
+             }   
+
+                
+            
         }
     }
 }

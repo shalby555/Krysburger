@@ -1,0 +1,26 @@
+﻿@page "/product/{Id:int}"
+<head>
+    <title>Product</title>
+    <link rel="stylesheet" href="LeftoverFood.css" />
+</head>
+@* <div class="color"> *@
+<h3>@_leftoverFood.Name</h3>
+<p> @_leftoverFood.Count</p>
+@* </div> *@
+@code 
+{
+    [Parameter]
+    public int Id { get; set; }
+
+    private LeftoverFoodManager _leftoverFoodManager;
+    private LeftoverFoodOutputModel _leftoverFood;                                                                      
+
+    public Product()
+    {
+         _leftoverFoodManager = new LeftoverFoodManager();
+    }
+    protected override void OnInitialized()
+    {
+         _leftoverFood = _leftoverFoodManager.GetLeftoverFoodGetById(Id);
+    }
+}
