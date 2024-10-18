@@ -1,0 +1,31 @@
+﻿@page "/leftoverfood"
+<head>
+    <title>Остатки</title>
+    <link rel="stylesheet" href="LeftoverFood.css"/>
+</head>
+@if (_leftoverFood.Count > 0)
+{
+<div class="flex">    
+@foreach (var l in _leftoverFood)
+{
+     <ProductCard LeftoverFood="@l"/>   
+}
+ </div>
+}
+else
+{
+     <h3>Остатков Нет</h3>
+    <p>Ресторан Леквидирован)))</p>
+}
+
+@code 
+{
+    private LeftoverFoodManager _leftoverFoodManager;
+    private List<LeftoverFoodOutputModel> _leftoverFood;
+
+    public LeftoverFood()
+    {
+        _leftoverFoodManager = new LeftoverFoodManager();
+        _leftoverFood = _leftoverFoodManager.GetAllLeftoverFood();
+    }
+}

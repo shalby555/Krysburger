@@ -1,0 +1,45 @@
+﻿@rendermode RenderMode.InteractiveServer
+@page "/ppp"
+
+
+<h3>Component</h3>
+<EditForm Model="@leftoverFood" OnSubmit="@Submit">
+    <DataAnnotationsValidator /> @* проверка валидации (подключи правила к инпут модели) *@
+    <ValidationSummary/>
+<div>
+    Name
+    <InputText @bind-Value="leftoverFood.Name"/>
+</div>
+
+<div>
+    Measure
+    <InputSelect @bind-Value="leftoverFood.Measure" multiple>   
+        <option>Гр</option>
+        <option>Кг</option>
+        <option>Шт.</option>
+    </InputSelect>
+</div>
+
+<div>
+    Count
+        <InputNumber @bind-Value="leftoverFood.Count" />
+</div>
+  <button type="submit">Добавить</button>
+</EditForm>
+
+<p>@leftoverFood.Name</p>
+<p>@leftoverFood.Measure</p>
+<p>@leftoverFood.Count</p>
+
+
+@code {
+    private LeftoverFoodInputModel leftoverFood;
+    public Component()
+    {
+        leftoverFood = new LeftoverFoodInputModel();
+    }
+    public void Submit()
+    {
+        
+    }
+}
