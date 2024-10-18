@@ -21,7 +21,7 @@ namespace Krysburger.Web
                         options.LoginPath = "/start-page";
                         options.Cookie.MaxAge = TimeSpan.FromMinutes(30);
                     });
-
+            builder.Services.AddBlazorBootstrap();
             builder.Services.AddAuthorization();
             builder.Services.AddCascadingAuthenticationState();
             builder.Services.AddHttpContextAccessor();

@@ -1,14 +1,46 @@
-﻿@page "/start-page/admin"
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+
+@page "/start-page/admin"
+
+<AuthorizeView Roles="admin">
+    <Authorized>
 <head>
     <title>Admin</title>
+    <title>@claims[1].Value</title>
 </head>
 <div>
     <link rel="stylesheet" href="StartChef.css" />
     <button type="button" onclick="location.href'">Добавить/Удалить пользователя</button>
     <button type="button" onclick="location.href'">Добавить новый Продукт</button>
 </div>
-
-
+</Authorized>
+    <NotAuthorized>
+        <h1>Не регнул</h1>
+    </NotAuthorized>
+</AuthorizeView>
+<AuthorizeView Roles="1">
+    <Authorized>
+        <h1>Я тебя знаю! Нельзя!!!</h1>
+    </Authorized>
+</AuthorizeView>
 @code {
 
+    [CascadingParameter]
+    public Task<AuthenticationState> State { get; set; }
+
+    private List<Claim> claims = new List<Claim>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        var authState = await State;
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            claims = user.Claims.ToList();
+        }
+    }
 }
