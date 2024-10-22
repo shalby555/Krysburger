@@ -27,11 +27,11 @@ namespace Krysburger.DAL
             //    return connection.QuerySingle<UserDTO>(query, args);
             //}
 
-            //var user = new UserDTO{ Id = 1, Login = "ZHOPA", Password = "BOBRA", Name = "UROD", Role = "admin" };
-            //return user;
-
-            var user = new UserDTO { Id = 3, Login = "qqq", Password = "qqq", Name = "serg", Role = "chef" };
+            var user = new UserDTO { Id = 1, Login = "ZHOPA", Password = "BOBRA", Name = "UROD", Role = "admin" };
             return user;
+
+            //var user = new UserDTO { Id = 3, Login = "qqq", Password = "qqq", Name = "serg", Role = "chef" };
+            //return user;
         }
     }
 }
