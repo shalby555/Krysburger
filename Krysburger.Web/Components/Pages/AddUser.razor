@@ -1,0 +1,40 @@
+﻿@using Krysburger.Core.InputModels
+@rendermode RenderMode.InteractiveServer
+@inject NavigationManager navManager
+@page "/adduser"
+<h3>Анкета</h3>
+
+@* <EditForm Model="@addUser" OnSubmit="@Submit">
+     <div>
+        <h5>Имя </h5>
+        <InputText @bind-Value="addUser.Name" />
+    </div>
+    <div>
+        <h5>Логин </h5>
+    <InputText @bind-Value="addUser.Login"/>
+    </div>
+    <div>
+        <h5>Пароль</h5>
+        <InputText @bind-Value="addUser.Passvord"/>
+    </div>
+
+    <div>
+        <h5>Роль</h5>
+        <InputNumber @bind-Value="addUser.Role"/>
+    </div>
+    <button type="submit">Добавить</button>
+</EditForm>
+
+@code {
+
+    private AddUserInputModel addUser;
+    
+    public Component()
+    {
+        addUser = new AddUserInputModel();
+    }
+    public void Submit()
+    {
+
+    }
+} *@
