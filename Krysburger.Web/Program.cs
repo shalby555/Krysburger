@@ -1,5 +1,6 @@
 using Krysburger.Web.Components;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Syncfusion.Blazor;
 
 namespace Krysburger.Web
 {
@@ -25,6 +26,9 @@ namespace Krysburger.Web
             builder.Services.AddAuthorization();
             builder.Services.AddCascadingAuthenticationState();
             builder.Services.AddHttpContextAccessor();
+            builder.Services.AddRazorPages();
+            builder.Services.AddServerSideBlazor();
+            builder.Services.AddSyncfusionBlazor();
 
             var app = builder.Build();
 
