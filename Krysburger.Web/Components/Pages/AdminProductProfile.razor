@@ -1,12 +1,18 @@
 ﻿@page "/admin-product"
 
-@if (_products.Count>0)
+<head>
+    ....
+    <link href="_content/Syncfusion.Blazor.Themes/bootstrap5.css" rel="stylesheet" />
+    <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
+</head>
+
+@if (_products.Count > 0)
 {
     <div style="display:flex; justify-content: flex-start; flex-wrap:wrap;">
-    @foreach(var p in _products)
-    {
-        <ProductProfileForm Product="@p"/>
-    }
+        @foreach (var p in _products)
+        {
+            <ProductProfileForm Product="@p" />
+        }
     </div>
 }
 else
@@ -14,8 +20,15 @@ else
     <p>Нет профиля продукта</p>
 }
 
-@code
+@code 
 {
+    public class Products
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
+
     private AdminManageProductProfile _adminManageProductProfile;
     private List<ProductProfileOutputModel> _products;
 
@@ -24,4 +37,13 @@ else
         _adminManageProductProfile = new AdminManageProductProfile();
         _products = _adminManageProductProfile.GetAllProfileProducts();
     }
+
+    public void OnValueChange(ChangeEventArgs<string, Products> args)
+    {
+        Console.WriteLine("The complete data of the selected value is: ", args.ItemData);
+    } *@
+
+}
+
+   
 }
