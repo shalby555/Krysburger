@@ -1,19 +1,49 @@
-﻿@page "/start-page/chef"
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@page "/start-page/chef"
+
+<AuthorizeView Roles="chef">
+    <Authorized>
 <head>
     <title>Chef</title>
+    <title>@claims[1].Value</title>
     <link rel="stylesheet" href="StartChef.css" />
 </head>
  <div>  
-    @* <link rel="stylesheet" href="StartChef.css" /> *@
       <button type="button" onclick="location.href='leftoverfood'">Остатки Склада</button>
       <button type="button" onclick="location.href'">Добавить новый рецепт</button>
       <button type="button" onclick="location.href'">Вывести меню ресторана</button>
       <button type="button" onclick="location.href'">Ожидаемые поставки</button>
   </div>
+    </Authorized>
+   @*  <NotAuthorized>
+        <h1>Не регнул</h1>
+    </NotAuthorized>
+</AuthorizeView>
+<AuthorizeView Roles="admin,logist">
+    <Authorized>
+        <h1>Я тебя знаю! Нельзя!!!</h1>
+    </Authorized>
+</AuthorizeView> *@
 
 @code {
+    [CascadingParameter]
+    public Task<AuthenticationState> State { get; set; }
 
+    private List<Claim> claims = new List<Claim>();
 
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        var authState = await State;
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            claims = user.Claims.ToList();
+        }
+    }
 }
  
 
